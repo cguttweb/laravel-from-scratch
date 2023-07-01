@@ -2,18 +2,33 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\File;
+
 class Post 
 {
+
+  public static function all(){
+    // resource is a helper function
+    $files = File::files(resource_path("posts/"));
+
+    return array_map(function($file){
+      return $file->getContents();
+    }, $files);
+    // converted to arrow function
+    // return array_map(fn($file) => $file->getContents(), $files);
+  }
+
   public static function find($slug){
-        if (! file_exists($path = __DIR__ . "/../resources/posts/{$slug}.html")){
-        // dump die useful for quick bugging
-        // dd('file does not exist');
-        // ddd('file does not exist');
-        return redirect('/');
+    // base path is helper function
+      base_path();
+      if (!file_exists($path = resource_path("posts/{$slug}.html"))){
+      // dump die useful for quick debugging
+      // dd('file does not exist');
+      // ddd('file does not exist');
+      throw new ModelNotFoundException();
     }
 
-    return $post = cache()->remember("posts.{$slug}", 1200, fn() => file_get_contents($path));
-
-
+    return cache()->remember("posts.{$slug}", 1200, fn() => file_get_contents($path));
   }
 }
