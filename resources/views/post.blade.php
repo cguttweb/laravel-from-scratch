@@ -1,11 +1,9 @@
 <!DOCTYPE html>
+@extends('layout')
 
-<title>My Blog App</title>
-<link rel="stylesheet" href="app.css">
-
-<body>
+@section('content')
    <h1><?= $post->title; ?></h1>
    <p><?= $post->body; ?></p>
 
    <a href="/">Go Back</a>
-</body>
+@endsection
