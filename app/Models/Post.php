@@ -56,15 +56,8 @@ class Post
   }
 
   public static function find($slug){
-    // base path is helper function
-      base_path();
-      if (!file_exists($path = resource_path("posts/{$slug}.html"))){
-      // dump die useful for quick debugging
-      // dd('file does not exist');
-      // ddd('file does not exist');
-      throw new ModelNotFoundException();
-    }
+    // find the blog post with the slug matches the one requested
 
-    return cache()->remember("posts.{$slug}", 1200, fn() => file_get_contents($path));
+    return static::all()->firstWhere('slug', $slug);
   }
 }
