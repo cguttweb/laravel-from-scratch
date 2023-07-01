@@ -5,6 +5,10 @@
 
 <body>
     <?php foreach ($posts as $post) : ?>
-        <?= $post; ?>
+        <h1>
+            <a href="/posts/<?= $post->slug; ?>"><?= $post-> title;?></a>
+            <?= $post->title; ?>
+        </h1>
+        <p><?= $post->excerpt ; ?></p>
     <?php endforeach; ?>
 </body>
