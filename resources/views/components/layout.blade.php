@@ -4,6 +4,6 @@
 <link rel="stylesheet" href="app.css">
 
 <body>
-
-  @yield('content')
+  {{-- this is the default slot for component --}}
+  {{ $slot }}
 </body>
