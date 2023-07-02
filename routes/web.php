@@ -23,10 +23,10 @@ Route::get('/', function () {
     ]);
 });
 
+// route model binding = binding route ky to underlying eloquent model
+// wildcard must match the variable name
+Route::get('posts/{post:slug}', function(Post $post){ //Post::where('slug', $post)->firstOrFail()
 
-Route::get('posts/{post}', function($id){
-// updated to use id rather than slug
-
-    return view('post', ['post' => Post::findOrFail($id)]);
+    return view('post', ['post' => $post]);
 
 });
