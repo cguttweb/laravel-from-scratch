@@ -24,9 +24,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('posts/{post}', function($slug){
+Route::get('posts/{post}', function($id){
     // find a post by its slug & pass it to view called post
 
-    return view('post', ['post' => Post::findOrFail($slug)]);
+    return view('post', ['post' => Post::findOrFail($id)]);
 
 });
