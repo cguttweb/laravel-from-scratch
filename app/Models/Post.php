@@ -20,6 +20,9 @@ class Post extends Model
     //     return 'slug';
     // }
 
+    // default for every post query - eager loading
+    protected $with = ['category', 'author'];
+
     public function category(){
         // hasOne, hasMany, belongsTo, belongsToMany
         // post belongs to one category
