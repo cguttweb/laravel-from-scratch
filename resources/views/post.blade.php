@@ -1,4 +1,5 @@
 <x-layout>
+   
    <div>
       <h1>{{ $post->title }}</h1>
 
