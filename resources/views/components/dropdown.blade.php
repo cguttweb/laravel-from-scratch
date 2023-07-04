@@ -6,7 +6,7 @@
         {{ $trigger }}
     </div>
 
-    <div x-show="open" @click.outside="open = false" class="absolute py-2 bg-gray-100 rounded-xl w-full z-50" style="display: none">
+    <div x-show="open" @click.outside="open = false" class="absolute py-2 bg-gray-100 rounded-xl w-full z-50 overflow-auto max-h-52" style="display: none">
     {{-- links for dropdown --}}
         {{ $slot }}
     </div>
