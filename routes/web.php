@@ -23,19 +23,20 @@ Route::get('/', function () {
     return view('posts', [
         'posts' => Post::latest()->with(['category', 'author'])->get(), 'categories' => Category::all()
     ]);
-});
+})->name('home');
 
 // route model binding = binding route ky to underlying eloquent model
 // wildcard must match the variable name
 Route::get('posts/{post:slug}', function(Post $post){ //Post::where('slug', $post)->firstOrFail()
-
     return view('post', ['post' => $post]);
-
 });
 
 Route::get('categories/{category:slug}', function(Category $category){
-    return view('posts', ['posts' => $category->posts, 'categories' => Category::all() ]);
-});
+    return view('posts', [
+        'posts' => $category->posts,
+    'categories' => Category::all()
+    ]);
+})->name('category');
 
 Route::get('authors/{author:username}', function(User $author){
     // dd($author);
