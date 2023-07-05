@@ -23,6 +23,16 @@ class Post extends Model
     // default for every post query - eager loading
     protected $with = ['category', 'author'];
 
+    public function scopeFilter($query, array $filters) {
+        // Post::newQuery()->filter()->where('title'....)
+        // $query->where
+           if($filters['search'] ?? false){
+            $query
+            ->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
+    }
+
     public function category(){
         // hasOne, hasMany, belongsTo, belongsToMany
         // post belongs to one category

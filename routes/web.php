@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -18,26 +19,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-
-    $posts = Post::latest();
-
-    if(request('search')){
-        $posts
-        ->where('title', 'like', '%' . request('search') . '%')
-        ->orWhere('body', 'like', '%' . request('search') . '%');
-    }
-
-    return view('posts', [
-        'posts' => Post::latest()->with(['category', 'author'])->get(), 'categories' => Category::all()
-    ]);
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 // route model binding = binding route ky to underlying eloquent model
 // wildcard must match the variable name
-Route::get('posts/{post:slug}', function(Post $post){ //Post::where('slug', $post)->firstOrFail()
-    return view('post', ['post' => $post]);
-});
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('categories/{category:slug}', function(Category $category){
     return view('posts', [
