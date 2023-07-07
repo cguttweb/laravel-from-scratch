@@ -44,8 +44,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password' => 'hashed', // automatic with latest laravel?
     ];
+
+    // this is an accessor
+    // public function gerUsernameAttribute($username){
+    //     return ucwords($username);
+    // }
+
+    public function setPasswordAttribute($password){
+        // called a mutator
+        $this->attributes['password'] = bcrypt($password);
+    }
 
     public function posts() //$user->posts
     {
