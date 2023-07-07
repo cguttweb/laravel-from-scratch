@@ -54,4 +54,16 @@
             </div>
         </footer>
     </section>
+
+    @if (session()->has('success'))
+        <div
+        x-data="{ open: true }"
+        x-init="setTimeout(() => open = false, 4000)"
+        x-show="open"
+        class="fixed bottom-0 bg-green-300 text-green-600 text-sm">
+            {{-- <p>{{ session()->get('success') }}</p> --}}
+            {{-- slightly shorter option to just pass in the key --}}
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
 </body>

@@ -52,8 +52,8 @@ class User extends Authenticatable
     //     return ucwords($username);
     // }
 
+    // this is a mutator
     public function setPasswordAttribute($password){
-        // called a mutator
         $this->attributes['password'] = bcrypt($password);
     }
 
