@@ -48,10 +48,9 @@
 
                   {{-- Comments section --}}
                   <section class="col-span-8 col-start-5 mt-8">
-                    <x-post-comment  />
-                    <x-post-comment  />
-                    <x-post-comment  />
-                    <x-post-comment  />
+                    @foreach ($post->comments as $comment)
+                        <x-post-comment :comment="$comment"  />
+                    @endforeach
                   </section>
 
               </article>
