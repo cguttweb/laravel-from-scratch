@@ -31,6 +31,19 @@ class Post extends Model
             ->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%');
          });
+
+         $query->when($filters['category'] ?? false, fn ($query, $category) =>
+             $query->whereHas('category', fn($query) =>
+             $query->where('slug', $category)
+        ));
+        //     $query
+        //     ->whereExists(fn($query) =>
+        //         $query->from('categories')
+        //         // ->where('categories.id', 'posts.category.id') // this does not work posts.category.id is not a string change to column
+        //         ->whereColumn('categories.id', 'posts.category.id')
+        //         ->where('categories.slug', $category)
+        //  );
+    // });
     }
 
     public function category(){

@@ -6,30 +6,7 @@
   <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-6">
       <!--  Category -->
       <div class="relative lg:inline-flex items-center bg-gray-100 rounded-xl">
-        <x-dropdown>
-
-            <x-slot name="trigger">
-                <button class="inline-flex py-2 pl-3 pr-9 text-left text-sm font-semibold w-full lg:w-32">
-                    {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
-                    {{-- option 1 --}}
-                    {{-- <x-down-arrow class="absolute pointer-events-none" style="right: 12px;" /> --}}
-                    {{-- option 2 more generic if multiple --}}
-                    <x-icon name="down-arrow" class="absolute pointer-events-none" style="right: 12px;" />
-                </button>
-            </x-slot>
-
-            <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
-
-            @foreach ($categories as $category)
-
-                <x-dropdown-item
-                    href="/categories/{{ $category->slug }}"
-                    :active="isset($currentCategory) && $currentCategory->is($category)">
-                    {{ ucwords($category->name) }}
-                </x-dropdown-item>
-
-            @endforeach
-        </x-dropdown>
+        <x-category-dropdown />
       </div>
 
       <!-- Other Filters -->
