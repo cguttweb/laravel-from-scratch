@@ -7,8 +7,9 @@ use App\Models\Category;
 
 class PostController extends Controller
 {
-    //
-    public function index () {
+    // common to stick with 7 restful actions - index, show, create, store, edit, update, destroy
+
+    public function index() {
 
         return view('posts.index', [
             'posts' =>  Post::latest()->filter(

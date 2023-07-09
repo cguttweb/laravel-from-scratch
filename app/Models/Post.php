@@ -12,7 +12,8 @@ class Post extends Model
 {
     use HasFactory;
     // option 3 never allow mass assignment
-    protected $guarded = [];
+    // this is no longer needed as set in AppServiceProvider
+    // protected $guarded = [];
     // option 2: protected $guarded = ['id'];
     // option 1: specifics which attrs can be mass/bulk assigned
     // protected $fillable = ['title', 'excerpt', 'body'];
@@ -23,7 +24,7 @@ class Post extends Model
     // }
 
     // default for every post query - eager loading
-    protected $with = ['category', 'author'];
+    // protected $with = ['category', 'author'];
 
     public function scopeFilter($query, array $filters) {
         // Post::newQuery()->filter()->where('title'....)
